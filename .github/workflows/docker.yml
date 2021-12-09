@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 env:
-  PLATFORMS: linux/amd64,linux/arm64
+  PLATFORMS: linux/amd64,linux/arm64,linux/arm/v7
 
 permissions:
   contents: read
@@ -24,8 +24,8 @@ jobs:
             tag: bionic
           - base_image: debian:buster
             tag: buster
-          - base_image: debian:testing
-            tag: testing
+        #  - base_image: debian:testing
+        #    tag: testing
     steps:
       - name: Set up Docker Buildx
         id: buildx
@@ -67,9 +67,9 @@ jobs:
           - sytest_image_tag: buster
             dockerfile: synapse
             tags: "neilalexander/sytest-synapse:buster"
-          - sytest_image_tag: testing
-            dockerfile: synapse
-            tags: "neilalexander/sytest-synapse:testing"
+        #  - sytest_image_tag: testing
+        #    dockerfile: synapse
+        #    tags: "neilalexander/sytest-synapse:testing"
           - sytest_image_tag: buster
             dockerfile: dendrite
             tags: "neilalexander/sytest-dendrite:latest"
